@@ -2,7 +2,7 @@
 /* global createTag */
 
 const getProject = () => {
-  const project = $('.board-header-btn-text');
+  const project = $('.window-title h2');
   return project ? project.textContent.trim() : '';
 };
 
@@ -50,18 +50,13 @@ togglbutton.render(
   '.checklist-item-details:not(.toggl)',
   { observe: true },
   (elem) => {
-    const getTitleText = () => {
-      const title = $('.window-title h2');
-      return title ? title.textContent.trim() : '';
-    };
-
     const getTaskText = () => {
       const task = $('.checklist-item-details-text', elem);
       return task ? task.textContent.trim() : '';
     };
 
     const getDescription = () => {
-      return `${getTitleText()} - ${getTaskText()}`;
+      return getTaskText();
     };
 
     const link = togglbutton.createTimerLink({
